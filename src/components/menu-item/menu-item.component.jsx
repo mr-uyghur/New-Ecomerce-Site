@@ -1,12 +1,15 @@
 import React from 'react';
 import './menu-item.scss'
+import { useNavigate } from 'react-router-dom';
 
 //Dynamically generate the title by passing it to this component as props
-const MenuItem = ({title, imageUrl,size}) =>{
+const MenuItem = ({title, imageUrl,size,linkUrl}) =>{
+    let navigate = useNavigate();
     return(
         <div
-        className={`${size} menu-item`} >
-
+        className={`${size} menu-item`}
+        onClick={() => navigate(`/${linkUrl}`)} >
+        
         <div  
         style = {{
             backgroundImage : `url(${imageUrl})`
