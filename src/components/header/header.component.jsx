@@ -6,9 +6,11 @@ import { Link } from "react-router-dom";
 const Header = () => {
   return (
     <div className="header">
+    
       <Link className="logo-container" to="/">
         <Logo className="logo" />
       </Link>
+
       <div className="options">
         <Link to="/shop" className="option">
           Shop
@@ -17,6 +19,7 @@ const Header = () => {
             Contact
         </Link>
       </div>
+
     </div>
   );
 };
