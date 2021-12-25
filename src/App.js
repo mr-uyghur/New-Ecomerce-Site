@@ -12,7 +12,7 @@ import {auth } from './firebase/firebase.utils'
 
 
 class App extends React.Component {
-//this block of code make the app be aware of any authentication changes in the firebase.
+//this block of code make the app be aware of any authentication state changes in the firebase.
 //OAuth login. User can login with 3rd part accounts
 // -------------------------------------------------------------------------------------------
   constructor(props) {
@@ -40,7 +40,7 @@ class App extends React.Component {
 render(){
   return (
     <div>
-    <Header />
+    <Header currentUser = {this.state.currentUser} />
     <Routes>
       <Route exact path="/" element={<HomePage />} />
     
