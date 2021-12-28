@@ -15,6 +15,14 @@ const config = {
   measurementId: "G-G2NVQ0RKLV",
 };
 
+//the function below is gonna qry data from the user object we get back from firebase's databse
+export const createUserProfileDocument = async (userAuth, additionalData) => {
+  //code below is for if the user isn't signed in 
+  //then we will not to anything with this function
+  if (!userAuth) return
+  
+}
+
 firebase.initializeApp(config);
 
 export const auth = firebase.auth();
