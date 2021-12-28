@@ -5,7 +5,7 @@ import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up
 import Header from './components/header/header.component'
 import "./App.css";
 import {  Routes, Route} from "react-router-dom";
-import {auth } from './firebase/firebase.utils'
+import {auth,createUserProfileDocument } from './firebase/firebase.utils'
 
 //store the user login info in App state so I can pass them down to other components
 
@@ -27,8 +27,9 @@ class App extends React.Component {
 
   //this is auth method we get from Firebase, used for authenticating Signed in users
   componentDidMount() {
-    this.unSubscribeFromAuth = auth.onAuthStateChanged(user => {
-      this.setState({currentUser:user})
+    this.unSubscribeFromAuth = auth.onAuthStateChanged(async user => {
+      createUserProfileDocument(user)
+
     })
   }
 

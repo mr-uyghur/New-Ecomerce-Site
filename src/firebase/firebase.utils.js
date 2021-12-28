@@ -15,13 +15,41 @@ const config = {
   measurementId: "G-G2NVQ0RKLV",
 };
 
+
+// ------------------------------------------------------------------------------------------------------------------------------------------------
+//this block of code is used for creating a new user profile
 //the function below is gonna qry data from the user object we get back from firebase's databse
 export const createUserProfileDocument = async (userAuth, additionalData) => {
   //code below is for if the user isn't signed in 
   //then we will not to anything with this function
   if (!userAuth) return
-  
+  //code below will qry user unique id from firebase and 
+  //returns user reference
+  const userRef = firestore.doc(`users/${userAuth.uid}`)
+  const snapShot = await userRef.get()
+
+  //code below is for if snapShot(user id) don't exist in the database
+  //we will create a piece of data for that user
+  //we will create it using the userRef
+  if(!snapShot.exists){
+    //get displayName and use email from the userAuth object
+    const {displayName, email} = userAuth
+    const createdAt = new Date() //this code records when this data is created
+    try{
+      await userRef.set({
+        displayName,
+        email,
+        createdAt,
+        ...additionalData
+      })
+
+    }catch(err){
+      console.log('Error creating user: ' + err.message)
+    }
+  }
+  return userRef
 }
+// ------------------------------------------------------------------------------------------------------------------------------------------------
 
 firebase.initializeApp(config);
 
