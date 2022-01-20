@@ -65,6 +65,7 @@ class SignInComponent extends React.Component {
             </CustomButton>
 
             <CustomButton
+              type="button"
               onClick={(e) => {
                 e.preventDefault();
                 signInWithGoogle();
