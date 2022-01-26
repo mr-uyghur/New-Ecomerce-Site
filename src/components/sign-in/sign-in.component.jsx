@@ -5,7 +5,7 @@ import "./sign-in.styles.scss";
 //import firebase/google user authentication
 import {auth, signInWithGoogle } from "../../firebase/firebase.utils";
 
-class SignInComponent extends React.Component {
+class SignIn extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -18,7 +18,7 @@ class SignInComponent extends React.Component {
     event.preventDefault();
     const {email, password} = this.state
     try {
-      await auth.signInWithEmail(email, password)
+      await auth.signInWithEmailAndPassword(email, password)
       this.setState({ email: "", password: "" });
     } catch (error) {
       console.error(error);
@@ -81,4 +81,4 @@ class SignInComponent extends React.Component {
   }
 }
 
-export default SignInComponent;
+export default SignIn;
