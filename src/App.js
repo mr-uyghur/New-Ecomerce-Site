@@ -30,10 +30,9 @@ class App extends React.Component {
           })
         })
       }
-      
-        setCurrentUser({userAuth})
-      
-     
+      else{
+        setCurrentUser(userAuth)
+      }
     })
   }
   componentWillUnmount(){
@@ -48,9 +47,16 @@ render(){
     <Routes>
       <Route exact path="/" element={<HomePage />} />
       <Route path="/shop" element={<ShopPage/>} />
-      <Route exact path="/signin" render = {() => this.props.currentUser ? 
-      (<Navigate to = '/'/>) 
-      :(SignInAndSignUpPage)} />
+      <Route
+    path="signIn"
+    element={
+        this.props.currentUser ? (
+            <Navigate replace to="/" />
+        ) : (
+            <SignInAndSignUpPage />
+        )
+    }
+/>
     </Routes>
   </div>
   )
