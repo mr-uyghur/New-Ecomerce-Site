@@ -7,7 +7,7 @@ import {connect} from 'react-redux'
 import CartIcon from '../cart-icon/cart-icon.component'
 import CartDropdown from '../cart-dropdown/cart-dropdown.component'
 
-const Header = ({currentUser}) => {
+const Header = ({currentUser, hidden}) => {
   return (
     <div className="header">
     
@@ -34,13 +34,17 @@ const Header = ({currentUser}) => {
         }
         <CartIcon />
       </div>
-        <CartDropdown/>
+      {/* the hidden state is for weather to show the cart drop down or not */}
+      { hidden ? null : <CartDropdown/>}
+        
     </div>
   );
 };
 
-const mapStateToProps = (state) =>({
-  currentUser: state.user.currentUser
+//code below is for getting user info/state from the global redux state
+const mapStateToProps = ({user:{currentUser}, cart:{hidden}}) =>({
+  currentUser,
+  hidden
 })
 
 export default connect(mapStateToProps)(Header);
