@@ -3,9 +3,11 @@ import './custom-button.styles.scss'
 
 //reuseble custom button component
 
-const CustomButton = ({children,isGoogleSignIn,...otherProps}) =>{
+const CustomButton = ({children,isGoogleSignIn,inverted,...otherProps}) =>{
  return(
-    <button className={`${ isGoogleSignIn ? 'google-sign-in':''} custom-button`}
+    <button className={`
+    ${ inverted ? 'inverted':''}
+    ${ isGoogleSignIn ? 'google-sign-in':''} custom-button`}
     {...otherProps}>
     {children}
 </button>
