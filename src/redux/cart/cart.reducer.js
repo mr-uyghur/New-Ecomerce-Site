@@ -1,6 +1,7 @@
 //initiate a boolean state and use the value of that state to determine
 //weather to render the cart dropdown or not.
 import CartActionTypes from './cart.types'
+import {addItemToCart} from './cart.utils'
 const INITIAL_STATE = {
     hidden: true,
     //items added to the shopping cart list will
@@ -20,7 +21,7 @@ const cartReducer = (state = INITIAL_STATE, action) => {
         case CartActionTypes.ADD_ITEM:
             return{
                 ...state,
-                CartItems:[...state.cartItems,action.payload]
+                CartItems:addItemToCart(state.cartItems,action.payload)
             }
             /*------------------------------------------------------------------- */
         default:
