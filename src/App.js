@@ -8,6 +8,8 @@ import "./App.css";
 import {  Routes, Route,Navigate } from "react-router-dom";
 import {auth,createUserProfileDocument } from './firebase/firebase.utils'
 import {setCurrentUser} from './redux/user/user.action'
+import {selectCurrentUser} from './redux/user/user.selectors'
+import {createStructuredSelector} from 'reselect'
 
 //store the user login info in App state so I can pass them down to other components
 class App extends React.Component {
@@ -63,8 +65,8 @@ render(){
 }
 }
 
-const mapStateToProps = ({user}) =>({
-  currentUser: user.currentUser
+const mapStateToProps = createStructuredSelector({
+  currentUser:selectCurrentUser
 })
 
 const mapDispatchToProps = dispatch => ({
