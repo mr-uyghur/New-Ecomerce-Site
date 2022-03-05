@@ -2,8 +2,10 @@ import React from "react";
 import HomePage from "./pages/homePage/homePage.component";
 import ShopPage from './pages/shop/shop.component'
 import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up.component'
-import {connect} from 'react-redux';
+import CheckoutPage from './pages/checkout/checkout.component'
 import Header from './components/header/header.component'
+
+import {connect} from 'react-redux';
 import "./App.css";
 import {  Routes, Route,Navigate } from "react-router-dom";
 import {auth,createUserProfileDocument } from './firebase/firebase.utils'
@@ -49,6 +51,7 @@ render(){
     <Routes>
       <Route exact path="/" element={<HomePage />} />
       <Route path="/shop" element={<ShopPage/>} />
+      <Route exact path="/checkout" element={<CheckoutPage/>} />
       <Route
     path="signIn"
     element={
