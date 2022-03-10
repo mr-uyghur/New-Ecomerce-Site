@@ -1,7 +1,7 @@
 //initiate a boolean state and use the value of that state to determine
 //weather to render the cart dropdown or not.
 import CartActionTypes from './cart.types';
-import { addItemToCart } from './cart.utils';
+import { addItemToCart,removeItemFromCart } from './cart.utils';
 const INITIAL_STATE = {
   hidden: true,
   //items added to the shopping cart list will
@@ -24,6 +24,13 @@ const cartReducer = (state = INITIAL_STATE, action) => {
         cartItems: addItemToCart(state.cartItems, action.payload)
       };
     /*------------------------------------------------------------------- */
+
+
+    case CartActionTypes.REMOVE_ITEM:
+      return {
+        ...state,
+        cartItems: removeItemFromCart(state.cartItems, action.payload)
+      };
 
     //Code below removes the items from the shopping cart list
     case CartActionTypes.CLEAR_ITEM_FROM_CART:
